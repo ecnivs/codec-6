@@ -1,6 +1,7 @@
 import pandas as pd
 from nltk import word_tokenize
 import nltk
+import wikipedia
 
 # Download the 'punkt' resource
 # nltk.download('punkt')
@@ -13,13 +14,13 @@ df = pd.DataFrame(data)
 def is_question(query):
     words = word_tokenize(query)
     # Check if the first word is a question word
-    question_words = ['what', 'when', 'where', 'who', 'whom', 'which', 'whose', 'why', 'how', 'is', 'are', 'do', 'does', 'did', 'can', 'could', 'should', 'would', 'will', 'am', 'was', 'were', 'has', 'have', 'had', 'may', 'might', 'must', 'shall', 'should']
+    question_words = ['what', 'when', 'where', 'who', 'whom', 'which', 'whose', 'why']
     return words[0].lower() in question_words
 
-# Apply the function to the 'Query' column
-if is_question("hello"):
-    print("True")
-else:
-    print("False")
+def process(query_text):
+    if is_question(query_text):
+        return(wikipedia.summary(query_text, sentences=2))
+    else:
+        return(False)
 
 

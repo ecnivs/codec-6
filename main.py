@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 from process_res import *
 from speak import *
 from dflow import *
+from process_res import *
 
 class PyBotGUI:
     def __init__(self, master):
@@ -66,10 +67,14 @@ class PyBotGUI:
 
             # TODO: Process the user message with your chatbot logic here
             # For simplicity, let's just echo the user's message as the bot's response
-            bot_response = get_res(user_message)
+            token = process(user_message)
+                
+            if token == False:
+                bot_response = get_res(user_message)
+                self.display_message(bot_response)
+            else:
+                self.display_message(token)
 
-            # Display bot response in the chat history
-            self.display_message(bot_response)
 
             # Clear the user input
             self.user_input.delete(0, tk.END)
