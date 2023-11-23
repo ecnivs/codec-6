@@ -11,29 +11,29 @@ from process_res import *
 class PyBotGUI:
     def __init__(self, master):
         self.master = master
-        self.master.set_theme("arc")  # Change the theme to 'arc'
+        self.master.set_theme("arc")
         self.master.title("PyBot Chat")
         self.master.geometry("800x600")
 
         self.speaker_enabled = True
 
-        self.chat_frame = tk.Frame(master, relief=tk.GROOVE, borderwidth=2, bg='#282c34')  # Dark background
+        self.chat_frame = tk.Frame(master, relief=tk.GROOVE, borderwidth=2, bg='#282c34') 
         self.chat_frame.grid(row=0, column=0, columnspan=4, padx=10, pady=10, sticky="nsew")
 
         self.chat_history = scrolledtext.ScrolledText(
-            self.chat_frame, wrap=tk.WORD, width=80, height=25, font=("Arial", 12), bg='#282c34', fg='#b4b4b4', state=tk.DISABLED  # Adjust font and colors
+            self.chat_frame, wrap=tk.WORD, width=80, height=25, font=("Arial", 12), bg='#282c34', fg='#b4b4b4', state=tk.DISABLED 
         )
         self.chat_history.grid(row=0, column=0, padx=10, pady=10, sticky="nsew", columnspan=3)
 
-        self.user_input = tk.Entry(master, width=40, font=("Arial", 14), bg='#282c34', fg='#34b7f1')  # Adjust font and colors
+        self.user_input = tk.Entry(master, width=40, font=("Arial", 14), bg='#282c34', fg='#34b7f1') 
         self.user_input.grid(row=1, column=0, padx=10, pady=10, sticky="ew", columnspan=2)
         self.user_input.bind("<Key>", self.disable_entry_delete)
         self.user_input.bind("<Return>", lambda event: self.send_message())
 
-        self.send_button = tk.Button(master, text="Send", command=self.send_message, bg="#34b7f1", fg="white", font=("Arial", 12, 'bold'))  # Blue color for the Send button
+        self.send_button = tk.Button(master, text="Send", command=self.send_message, bg="#34b7f1", fg="white", font=("Arial", 12, 'bold')) 
         self.send_button.grid(row=1, column=2, padx=10, pady=10, sticky="ew")
 
-        self.voice_button = tk.Button(master, text="Voice", command=self.start_voice_input, bg="#34b7f1", fg="white", font=("Arial", 12, 'bold'))  # Blue color for the Voice button
+        self.voice_button = tk.Button(master, text="Voice", command=self.start_voice_input, bg="#34b7f1", fg="white", font=("Arial", 12, 'bold')) 
         self.voice_button.grid(row=1, column=3, padx=10, pady=10, sticky="ew")
 
         self.speaker_icon = ImageTk.PhotoImage(Image.open("resources/speaker_icon.png").resize((30, 30)))
@@ -52,7 +52,6 @@ class PyBotGUI:
 
         self.display_message("PyBot: Welcome to PyBot Chat!\n")
 
-        # Initialize SpeechRecognition
         self.recognizer = sr.Recognizer()
 
     def send_message(self):
@@ -78,11 +77,9 @@ class PyBotGUI:
         try:
             with sr.Microphone() as source:
                 self.recognizer.adjust_for_ambient_noise(source)
-                self.display_message("PyBot: Listening for voice input...", user=False)
+                self.display_message("PyBot: Listening...", user=False)
 
                 audio = self.recognizer.listen(source, timeout=5)
-
-                self.display_message("PyBot: Processing voice input...", user=False)
 
                 user_message = self.recognizer.recognize_google(audio)
                 self.display_message("You (Voice): " + user_message, user=True)
@@ -95,11 +92,11 @@ class PyBotGUI:
                 else:
                     self.display_message(token)
 
-                if self.speaker_enabled:
+                if self.speaker_enabled and token:
                     self.speak(bot_response)
 
         except sr.UnknownValueError:
-            self.display_message("PyBot: Sorry, I could not understand the voice input.", user=False)
+            self.display_message("PyBot: Sorry, I could not understand", user=False)
         except sr.RequestError as e:
             self.display_message(f"PyBot: Error with the voice recognition service: {e}", user=False)
 
