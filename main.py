@@ -67,6 +67,7 @@ class PyBotGUI:
                 self.display_message(bot_response)
             else:
                 self.display_message(token)
+                bot_response = token
 
             self.user_input.delete(0, tk.END)
 
