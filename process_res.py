@@ -1,9 +1,6 @@
 import pandas as pd
 from nltk import word_tokenize
-import nltk
 import wikipedia
-import pyautogui
-import time
 import requests
 import re
 import subprocess
