@@ -16,6 +16,10 @@ def is_question(query):
     question_words = ['what', 'when', 'where', 'who', 'whom', 'which', 'whose', 'why', 'how', 'is', 'are', 'do', 'does', 'did', 'can', 'could', 'should', 'would', 'will', 'am', 'was', 'were', 'has', 'have', 'had', 'may', 'might', 'must', 'shall', 'should']
     return words[0].lower() in question_words
 
-
+# Apply the function to the 'Query' column
+if is_question("hello"):
+    print("True")
+else:
+    print("False")
 
 
