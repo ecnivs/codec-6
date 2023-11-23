@@ -14,11 +14,16 @@ df = pd.DataFrame(data)
 def is_question(query):
     words = word_tokenize(query)
     # Check if the first word is a question word
-    question_words = ['what', 'when', 'where', 'who', 'whom', 'which', 'whose', 'why']
+    question_words = ['what', 'who',]
     return words[0].lower() in question_words
 
 def process(query_text):
     if is_question(query_text):
+        query_text = query_text.replace("what is", "")
+        query_text = query_text.replace("what is the", "")
+        query_text = query_text.replace("what are", "")
+        query_text = query_text.replace("who is", "")
+        query_text = query_text.replace("who are", "")
         return(wikipedia.summary(query_text, sentences=2))
     else:
         return(False)
