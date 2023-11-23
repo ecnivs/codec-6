@@ -94,10 +94,12 @@ class PyBotGUI:
         # Automatically scroll to the bottom to show the latest messages
         self.chat_history.yview(tk.END)
 
+
     def disable_entry_delete(self, event):
         # Disable the ability to delete text in the entry widget
-        if event.keysym in ('BackSpace', 'Delete'):
+        if event.keysym == 'Delete' or event.keysym == "Backspace":
             return 'break'
+
 
     def toggle_speaker(self):
         # Toggle the speaker functionality on and off
