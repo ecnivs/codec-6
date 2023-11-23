@@ -6,5 +6,5 @@ AI-powered chat bot designed to automate desktop and web tasks. created by putti
 
 https://github.com/ecnivs/codec-6
 
-# Team codec-6
+# Team Codec-6
 # Innovatex 2.0 Hackathon 
