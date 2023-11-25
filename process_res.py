@@ -8,6 +8,14 @@ import subprocess
 # Download the 'punkt' resource
 # nltk.download('punkt')
 
+app_names = {
+    "chrome": "Google Chrome",
+    "firefox": "Mozilla Firefox",
+    "notepad": "Notepad",
+    "calculator": "Calculator",
+    "spotify": "Spotify"
+}
+
 def is_valid_website(site):
     try:
         response = requests.head("http://" + site)
@@ -28,16 +36,8 @@ def runapp(appname):
         print(f"{appname} not found.")
 
 def match_app_name(partial_input):
-    app_names = {
-        "chrome": "Google Chrome",
-        "firefox": "Mozilla Firefox",
-        "notepad": "Notepad",
-        "calculator": "Calculator",
-        "spotify" : "Spotify"
-    }
-
     for key, value in app_names.items():
-        if partial_input.lower() in key:
+        if partial_input.lower() in key.lower():
             return value
 
     return None

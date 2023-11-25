@@ -7,3 +7,5 @@ https://github.com/ecnivs/codec-6
 
 # Team Codec-6
 # Innovatex 2.0 Hackathon 
+
+Note: This project covers only the base functionalities.
