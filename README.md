@@ -1,4 +1,4 @@
-# AI Assistant Chat Bot Project
+# AI Assistant with Dialogflow
 
 ## Team Codec-6 -- Innovatex 2.0 Hackathon 2023
 
